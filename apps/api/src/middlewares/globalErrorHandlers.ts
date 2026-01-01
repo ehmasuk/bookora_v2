@@ -1,16 +1,16 @@
-import type { ErrorRequestHandler, RequestHandler, Response } from "express";
+import type { ErrorRequestHandler, NextFunction, Request, Response } from "express";
 import { Error as MongooseError } from "mongoose";
 import { ZodError } from "zod";
 import { logger } from "../config/logger.js";
 import type { ErrorWithStatusCode } from "../types/index.js";
 import newError from "../utils/newError.js";
 
-const notFound: RequestHandler = (_req, _res, next): void => {
+const notFound = (_req: Request, _res: Response, next: NextFunction): void => {
   const error = newError({ message: "Route not found", statusCode: 404 });
   next(error);
 };
 
-const catchGlobalErrors: ErrorRequestHandler = (err: ErrorWithStatusCode, _req, res, _next): Response => {
+const catchGlobalErrors: ErrorRequestHandler = (err: ErrorWithStatusCode, _req: Request, res: Response, _next: NextFunction): Response => {
   // global error consoler, it must be removed in prod server
   console.log(err);
 
