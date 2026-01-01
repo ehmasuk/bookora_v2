@@ -10,7 +10,7 @@ middlewares(app);
 // configure swagger
 configSwagger(app);
 //configure logger
-configLogger(app);
+// configLogger(app);
 // load all routes
 routes(app);
 // catch not found routes and throw error

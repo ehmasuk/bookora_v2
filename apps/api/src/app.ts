@@ -14,7 +14,7 @@ middlewares(app);
 configSwagger(app);
 
 //configure logger
-configLogger(app);
+// configLogger(app);
 
 // load all routes
 routes(app);
