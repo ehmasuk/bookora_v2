@@ -1,113 +1,299 @@
-# Bookora
+# Bookora Client
 
-Bookora is a full-stack web application that provides a platform for authors to write, organize, and manage their books. It offers a clean, intuitive interface with a rich text editor and features designed to streamline the book writing process.
+<div align="center">
 
-[![Live Demo](https://bookora.vercel.app)]
-[![GitHub issues](https://img.shields.io/github/issues/ehmasuk/bookora-client)](https://github.com/ehmasuk/bookora-client/issues)
-[![GitHub forks](https://img.shields.io/github/forks/ehmasuk/bookora-client)](https://github.com/ehmasuk/bookora-client/network)
-[![GitHub stars](https://img.shields.io/github/stars/ehmasuk/bookora-client)](https://github.com/ehmasuk/bookora-client/stargazers)
+[![Next.js](https://img.shields.io/badge/Next.js-15.2.6-black)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7.3-blue)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-19.0.1-blue)](https://react.dev/)
 
+Frontend application for the Bookora book writing platform. Built with Next.js 15, TypeScript, and modern React patterns.
 
-## Features
+[Live Demo](https://bookora.vercel.app)
 
-- **Authentication:** Secure user registration and login.
-- **Book Management:** Create, edit, and delete books.
-- **Chapter Organization:** Add, reorder, and manage chapters within a book.
-- **Rich Text Editor:** A powerful and intuitive editor for writing content.
-- **Drag and Drop:** Easily reorder chapters with a drag-and-drop interface.
-- **Internationalization (i18n):** Support for multiple languages.
-- **Dark Mode:** A comfortable reading and writing experience in low-light environments.
-- **Responsive Design:** A seamless experience across all devices.
+</div>
 
-## Tech Stack
+## 📋 Table of Contents
 
-**Frontend:**
+- [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Environment Variables](#environment-variables)
+- [Available Scripts](#available-scripts)
+- [Project Structure](#project-structure)
+- [Development](#development)
+- [Contributing](#contributing)
+- [License](#license)
 
-- [Next.js](https://nextjs.org/) - React framework for server-rendered applications.
-- [TypeScript](https://www.typescriptlang.org/) - Typed superset of JavaScript.
-- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework.
-- [Radix UI](https://www.radix-ui.com/) - Unstyled, accessible components.
-- [Tiptap](https://tiptap.dev/) - A headless, framework-agnostic rich text editor.
-- [SWR](https://swr.vercel.app/) - React Hooks for data fetching.
-- [Framer Motion](https://www.framer.com/motion/) - A production-ready motion library for React.
-- [Next-Intl](https://next-intl-docs.vercel.app/) - Internationalization for Next.js.
+## 🎯 Overview
 
-**Backend:**
+Bookora Client is the frontend application of the Bookora platform—a full-stack web application that provides authors with a platform to write, organize, and manage their books. It offers a clean, intuitive interface with a rich text editor and features designed to streamline the book writing process.
 
-- [Next.js API Routes](https://nextjs.org/docs/api-routes/introduction) - For serverless API endpoints.
-- [NextAuth.js](https://next-auth.js.org/) - Authentication for Next.js.
+This application is part of the [Bookora Monorepo](../../README.md) and works in conjunction with the [Bookora API](../api/README.md) backend.
 
-## Getting Started
+## ✨ Features
 
-To get a local copy up and running, follow these simple steps.
+- **Authentication** - Secure user registration and login with NextAuth.js
+- **Book Management** - Create, edit, and delete books with intuitive UI
+- **Chapter Organization** - Add, reorder, and manage chapters within a book
+- **Rich Text Editor** - Powerful and intuitive Tiptap editor for writing content
+- **Drag and Drop** - Easily reorder chapters with a drag-and-drop interface using dnd-kit
+- **Internationalization (i18n)** - Support for multiple languages (English, Spanish, German)
+- **Dark Mode** - Comfortable reading and writing experience in low-light environments
+- **Responsive Design** - Seamless experience across all devices
+- **Auto-save** - Automatic saving while you write
+- **Real-time Updates** - Data synchronization with SWR
+- **Modern UI** - Built with Radix UI and Tailwind CSS
+
+## 🛠️ Tech Stack
+
+### Frontend Framework
+
+- [Next.js 15](https://nextjs.org/) - React framework with App Router for server-rendered applications
+- [TypeScript](https://www.typescriptlang.org/) - Typed superset of JavaScript
+- [React 19](https://react.dev/) - UI library
+
+### Styling & UI
+
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [Radix UI](https://www.radix-ui.com/) - Unstyled, accessible component primitives
+- [shadcn/ui](https://ui.shadcn.com/) - Re-usable components built with Radix UI and Tailwind CSS
+- [next-themes](https://github.com/pacocoursey/next-themes) - Dark mode support
+
+### Core Libraries
+
+- [Tiptap](https://tiptap.dev/) - Headless, framework-agnostic rich text editor
+- [SWR](https://swr.vercel.app/) - React Hooks for data fetching and caching
+- [React Hook Form](https://react-hook-form.com/) - Performant forms with easy validation
+- [Zod](https://zod.dev/) - TypeScript-first schema validation
+- [Axios](https://axios-http.com/) - HTTP client for API requests
+
+### State Management & Data
+
+- [Easy Peasy](https://easy-peasy.vercel.app/) - Global state management
+- [SWR](https://swr.vercel.app/) - Server state management and caching
+
+### Additional Features
+
+- [NextAuth.js](https://next-auth.js.org/) - Authentication for Next.js
+- [next-intl](https://next-intl-docs.vercel.app/) - Internationalization for Next.js
+- [Framer Motion](https://www.framer.com/motion/) - Production-ready motion library
+- [@dnd-kit](https://dndkit.com/) - Modern drag and drop toolkit
+
+### Shared Packages
+
+This app uses shared packages from the monorepo:
+- `@workspace/ui` - Shared UI component library
+- `@workspace/eslint-config` - Shared ESLint configuration
+- `@workspace/typescript-config` - Shared TypeScript configuration
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/en/) (v18.x or later)
-- [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/)
+- **Node.js** >= 20.x
+- **pnpm** (recommended) or npm/yarn
+- Running [Bookora API](../api/README.md) instance (for full functionality)
 
 ### Installation
 
-1.  **Clone the repository:**
+This application is part of a monorepo. Follow these steps:
 
-    ```bash
-    git clone https://github.com/ehmasuk/bookora-client.git
-    cd YOUR_REPOSITORY/client
-    ```
+1. **Clone the monorepo repository:**
 
-2.  **Install dependencies:**
+   ```bash
+   git clone https://github.com/yourusername/bookora-mono-repo.git
+   cd bookora-mono-repo
+   ```
 
-    ```bash
-    npm install
-    # or
-    yarn install
-    ```
+2. **Install dependencies from the root:**
 
-3.  **Set up environment variables:**
+   ```bash
+   pnpm install
+   ```
 
-    Create a `.env.local` file in the `client` directory and add the necessary environment variables. You can use `example.env` as a template.
+   This will install dependencies for all apps and packages in the monorepo.
 
-    ```bash
-    cp example.env .env.local
-    ```
+3. **Set up environment variables:**
 
-    Update the values in `.env.local` with your own.
+   Create a `.env.local` file in the `apps/client` directory:
 
-4.  **Run the development server:**
+   ```bash
+   cd apps/client
+   cp example.env .env.local
+   ```
 
-    ```bash
-    npm run dev
-    # or
-    yarn dev
-    ```
+   Update the values in `.env.local` (see [Environment Variables](#environment-variables) below).
 
-    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. **Run the development server:**
 
-## Available Scripts
+   From the root directory:
 
-In the project directory, you can run:
+   ```bash
+   pnpm dev
+   ```
 
--   `npm run dev`: Runs the app in the development mode.
--   `npm run build`: Builds the app for production to the `.next` folder.
--   `npm run start`: Starts a Next.js production server.
--   `npm run lint`: Runs ESLint to find and fix problems in your code.
+   Or run only the client:
 
-## Contributing
+   ```bash
+   pnpm --filter client dev
+   ```
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+   Or from the client directory:
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+   ```bash
+   cd apps/client
+   pnpm dev
+   ```
 
-1.  Fork the Project
-2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3.  Commit your Changes (`git commit -m '''Add some AmazingFeature'''`)
-4.  Push to the Branch (`git push origin feature/AmazingFeature`)
-5.  Open a Pull Request
+   Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## License
+## 🔐 Environment Variables
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Create a `.env.local` file in the `apps/client` directory with the following variables:
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `NEXT_PUBLIC_API_URI` | Base URL of the API backend (e.g., `http://localhost:8080/api` or `https://bookora.vercel.app/api`) | Yes |
+| `AUTH_SECRET` | Secret for NextAuth.js (generate with `openssl rand -base64 32`) | Yes (for production) |
+| `AUTH_GOOGLE_ID` | Google OAuth Client ID | Optional |
+| `AUTH_GOOGLE_SECRET` | Google OAuth Client Secret | Optional |
+
+Example `.env.local` file:
+
+```env
+NEXT_PUBLIC_API_URI=http://localhost:8080/api
+AUTH_SECRET=your-auth-secret-here
+```
+
+## 📜 Available Scripts
+
+Run these commands from the `apps/client` directory or use Turborepo filtering from the root:
+
+| Command | Description |
+|---------|-------------|
+| `pnpm dev` | Runs the app in development mode on `http://localhost:3000` |
+| `pnpm build` | Builds the app for production to the `.next` folder |
+| `pnpm start` | Starts a Next.js production server |
+| `pnpm lint` | Runs ESLint to find and fix problems in your code |
+| `pnpm check-types` | Type-checks TypeScript without emitting files |
+
+From the root directory:
+
+```bash
+pnpm --filter client dev      # Run dev
+pnpm --filter client build    # Build for production
+pnpm --filter client lint     # Lint code
+```
+
+## 📁 Project Structure
+
+```
+client/
+├── app/                      # Next.js App Router
+│   ├── (custom-layout)/     # Layout group
+│   ├── (global-layout)/     # Global layout group
+│   ├── api/                 # API routes
+│   ├── layout.tsx           # Root layout
+│   └── ...
+├── components/              # React components
+│   ├── book/               # Book-related components
+│   ├── global/             # Global components
+│   ├── layout/             # Layout components
+│   ├── modals/             # Modal components
+│   └── ...
+├── hooks/                   # Custom React hooks
+├── lib/                     # Utility libraries
+├── providers/               # Context providers
+├── store/                   # Easy Peasy store
+├── translations/            # i18n translation files
+├── types/                   # TypeScript types
+├── public/                  # Static assets
+├── auth.ts                  # NextAuth configuration
+├── middleware.ts            # Next.js middleware
+└── ...
+```
+
+## 💻 Development
+
+### Adding New Components
+
+Components can be added to the `components/` directory. For shared UI components, consider adding them to the `@workspace/ui` package instead.
+
+### Using Shared UI Components
+
+Import components from the shared UI package:
+
+```tsx
+import { Button } from "@workspace/ui/components/button"
+import { Card } from "@workspace/ui/components/card"
+```
+
+### Adding shadcn/ui Components
+
+To add new shadcn/ui components to the shared UI package:
+
+```bash
+pnpm dlx shadcn@latest add button -c packages/ui
+```
+
+### Internationalization
+
+Translation files are located in `translations/`. Supported languages:
+- English (`en.json`)
+- Spanish (`es.json`)
+- German (`de.json`)
+
+Add new translations by updating the JSON files.
+
+### Styling
+
+- Use Tailwind CSS utility classes for styling
+- Global styles are in `@workspace/ui/src/styles/globals.css`
+- Component-specific styles should use Tailwind classes or CSS modules
+
+### API Integration
+
+The app uses Axios with an interceptor for authentication. API calls are made through:
+
+```tsx
+import axiosInstance from "@/lib/axiosInstance"
+
+const response = await axiosInstance.get("/book")
+```
+
+The base URL is configured via `NEXT_PUBLIC_API_URI` environment variable.
+
+### Authentication
+
+Authentication is handled by NextAuth.js. The configuration is in `auth.ts`. The app uses:
+- Credentials provider (email/password)
+- Optional Google OAuth provider
+
+Session management is handled automatically by NextAuth.js.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please see the root [CONTRIBUTING.md](../../CONTRIBUTING.md) (if available) or the root README for guidelines.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Make your changes
+4. Run linting and type checking (`pnpm lint`, `pnpm check-types`)
+5. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+6. Push to the branch (`git push origin feature/AmazingFeature`)
+7. Open a Pull Request
+
+## 📄 License
+
+Distributed under the MIT License. See root [LICENSE](../../LICENSE) for more information.
 
 ---
 
-*This README was generated with the help of Gemini.*
+<div align="center">
+
+**Part of the Bookora Monorepo**
+
+[API Documentation](../api/README.md) • [Root README](../../README.md) • [Live Demo](https://bookora.vercel.app)
+
+</div>
