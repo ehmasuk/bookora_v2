@@ -120,7 +120,7 @@
     "header": {
       "title": "Mis libros",
       "description": "Gestiona tu colección personal de libros",
-      "create_button": "Crear un nuevo libro"
+      "create_button": "Libro"
     },
     "empty_message": "Aún no has creado ningún libro"
   },
@@ -131,7 +131,6 @@
     "words": "palabras",
     "chapters": "Capítulos",
     "brand": "Un producto de",
-    "saving": "Guardando",
     "entry-title": "¿Listo para escribir tu historia?",
     "entry-description": "Crea un nuevo capítulo para comenzar tu viaje o selecciona una sección existente para continuar editando tu obra maestra."
   }

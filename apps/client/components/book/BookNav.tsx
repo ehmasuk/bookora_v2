@@ -2,10 +2,11 @@
 
 import useUpdate from "@/hooks/useUpdate";
 import { StoreType } from "@/store/store";
+import { Button } from "@workspace/ui/components/button";
+import { Skeleton } from "@workspace/ui/components/skeleton";
 import { useStoreState } from "easy-peasy";
+import { CloudCheck, HomeIcon, LoaderIcon, Menu, PanelRightClose, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { HomeIcon, LoaderIcon, Menu, PanelRightClose, X } from "lucide-react";
-import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useNextStep } from "nextstepjs";
@@ -16,8 +17,6 @@ import AvatarDropdown from "../global/AvatarDropdown";
 import LanguageChanger from "../global/LanguageChanger";
 import TitleAsInput from "../global/TitleAsInput";
 import { AnimatedThemeToggler } from "../magicui/animated-theme-toggler";
-import { Button } from "@workspace/ui/components/button";
-import { Skeleton } from "@workspace/ui/components/skeleton";
 
 interface Props {
   isOpen: boolean;
@@ -47,7 +46,7 @@ function BookNav({ isOpen, setIsOpen }: Props) {
   // get book id from url
   const { bookId } = useParams();
 
-  const t = useTranslations("bookpage");
+
 
   // fetch book data and set in bookinfo and chapters in store from the book data
   const { data: res, error, isLoading } = useSWR(bookId ? `/book/${bookId}` : null);
@@ -63,11 +62,11 @@ function BookNav({ isOpen, setIsOpen }: Props) {
   };
 
   return (
-    <nav className="flex border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 w-full sticky top-0 flex-wrap gap-2 items-center justify-between md:px-8 px-2 py-2 dark:bg-gray-900">
+    <nav className="flex border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 w-full sticky top-0 flex-wrap gap-2 items-center justify-between md:px-8 px-2 py-2 dark:bg-gray-900">
       <div className="flex gap-5 items-center">
         {!isOpen && <PanelRightClose onClick={() => setIsOpen(!isOpen)} size={20} className="hover:text-blue-500 duration-300 cursor-pointer" />}
 
-        {isLoading && <Skeleton className="w-50 h-[20px] mt-2" />}
+        {isLoading && <Skeleton className="w-50 h-5 mt-2" />}
 
         {/* Book title */}
         {!isLoading && (
@@ -77,12 +76,8 @@ function BookNav({ isOpen, setIsOpen }: Props) {
         )}
 
         {/* Loading state */}
-        {bookIsUpdating && (
-          <div className="md:flex hidden text-blue-500 items-center text-sm gap-1">
-            {t("saving")}
-            <LoaderIcon className="w-4 dark:text-white cursor-pointer animate-spin" />
-          </div>
-        )}
+
+        {bookIsUpdating ? <LoaderIcon className="w-4 dark:text-white cursor-pointer animate-spin" /> : <CloudCheck size={18}/>}
       </div>
 
       {/* desktop */}

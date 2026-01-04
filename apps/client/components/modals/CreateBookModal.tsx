@@ -4,11 +4,9 @@ import usePost from "@/hooks/usePost";
 import { BookType } from "@/types/book";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@workspace/ui/components/button";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@workspace/ui/components/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@workspace/ui/components/dialog";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@workspace/ui/components/form";
-import { Input } from "@workspace/ui/components/input";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@workspace/ui/components/tooltip";
-import { BookMarkedIcon } from "lucide-react";
+import { ArrowRightIcon, BookMarkedIcon, SparklesIcon } from "lucide-react";
 
 import { useRouter } from "next/navigation";
 
@@ -17,10 +15,18 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
+import React from "react";
+
+import { Separator } from "@workspace/ui/components/separator";
+
+import { IconPencilStar, IconWand } from "@tabler/icons-react";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@workspace/ui/components/input-group";
+import Link from "next/link";
+import { CommingSoon } from "../global/CommingSoon";
+
 interface Props {
   children: React.ReactNode;
   tooltip?: boolean;
-  eligableToShowStepsGuide?: boolean;
 }
 
 interface NewBookResponse {
@@ -29,12 +35,11 @@ interface NewBookResponse {
   data: BookType;
 }
 
-function CreateBookModal({ children, tooltip = true }: Props) {
+function CreateBookModal({ children }: Props) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
   const router = useRouter();
-
   const { postData, loading } = usePost();
-
   const formSchema = z.object({
     title: z.string().min(1, { message: "Book name is required" }),
   });
@@ -68,51 +73,98 @@ function CreateBookModal({ children, tooltip = true }: Props) {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <TooltipProvider>
-        <Tooltip delayDuration={1000}>
-          <TooltipTrigger asChild>
-            <DialogTrigger asChild>{children}</DialogTrigger>
-          </TooltipTrigger>
-          {tooltip && (
-            <TooltipContent className="bg-slate-700 text-slate-100 rounded px-2 py-1 text-xs">
-              <p>Create a new Book</p>
-            </TooltipContent>
-          )}
-        </Tooltip>
-      </TooltipProvider>
-      <DialogContent className="w-sm">
-        <div className="mb-2 flex flex-col items-center gap-2">
-          <DialogHeader>
-            <DialogTitle className="sm:text-center">Create a new book</DialogTitle>
-            <DialogDescription className="sm:text-center">Enter book name and start writing.</DialogDescription>
-          </DialogHeader>
+      <DialogTrigger asChild className="cursor-pointer">
+        {children}
+      </DialogTrigger>
+
+      <DialogContent className="overflow-visible p-0 sm:max-w-2xl gap-0">
+        <DialogHeader className="border-b px-6 py-4 mb-0">
+          <DialogTitle>Create New Book</DialogTitle>
+        </DialogHeader>
+
+        <div className="flex flex-col-reverse md:flex-row">
+          {/* left col */}
+          <div className="flex flex-1 flex-col justify-between md:w-80 md:border-r">
+            <div className="flex-1 grow">
+              <div className="border-t p-6 md:border-none">
+                <div className="flex items-center space-x-3">
+                  <div className="inline-flex shrink-0 items-center justify-center rounded-sm bg-muted p-3">
+                    <IconPencilStar className="size-5 text-foreground" />
+                  </div>
+                  <div className="space-y-0.5">
+                    <h3 className="text-sm font-medium text-foreground">Create Manually</h3>
+                    <p className="text-sm text-muted-foreground">Start with a blank book</p>
+                  </div>
+                </div>
+                <Separator className="my-4" />
+                <h4 className="text-sm font-medium text-foreground">How it works?</h4>
+                <p className="mt-1 text-sm leading-6 text-muted-foreground">Enter a title and build your book from scratch with full control.</p>
+              </div>
+            </div>
+            <div className="border-t p-4">
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                  <FormField
+                    control={form.control}
+                    name="title"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <InputGroup className="h-10">
+                            <InputGroupInput placeholder="Book name" type="text" {...field} />
+                            <InputGroupAddon>
+                              <BookMarkedIcon />
+                            </InputGroupAddon>
+                            <InputGroupAddon align="inline-end">
+                              <Button loading={loading} variant="black" type="submit" className="size-8 p-0">
+                                <ArrowRightIcon />
+                              </Button>
+                            </InputGroupAddon>
+                          </InputGroup>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </form>
+              </Form>
+            </div>
+          </div>
+
+          {/* right col */}
+          <div className="flex flex-col justify-between md:w-80">
+            <div className="flex-1 grow">
+              <div className="border-t p-6 md:border-none">
+                <div className="flex items-center space-x-3">
+                  <div className="inline-flex shrink-0 items-center justify-center rounded-sm bg-muted p-3">
+                    <IconWand className="size-5 text-foreground" />
+                  </div>
+                  <div className="space-y-0.5">
+                    <h3 className="text-sm font-medium text-foreground">Generate with AI</h3>
+                    <p className="text-sm text-muted-foreground">Let AI build your book structure</p>
+                  </div>
+                </div>
+                <Separator className="my-4" />
+                <h4 className="text-sm font-medium text-foreground">How it works?</h4>
+                <p className="mt-1 text-sm leading-6 text-muted-foreground">Quickly generate a complete book structure with chapters and sections.</p>
+              </div>
+            </div>
+            <div className="flex items-center justify-end border-t p-5">
+              <CommingSoon>
+                <Button type="submit" variant="black" className="h-8">
+                  <SparklesIcon />
+                  Generate
+                </Button>
+              </CommingSoon>
+              {/* <Link href="/generate-book">
+                <Button type="submit" variant="black" className="h-8">
+                  <SparklesIcon />
+                  Generate
+                </Button>
+              </Link> */}
+            </div>
+          </div>
         </div>
-
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <FormField
-              control={form.control}
-              name="title"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <div className="relative">
-                      <Input className="peer ps-9" placeholder="Book name" type="text" {...field} />
-                      <div className="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 peer-disabled:opacity-50">
-                        <BookMarkedIcon size={16} aria-hidden="true" />
-                      </div>
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <Button loading={loading} variant="primary" type="submit" className="w-full">
-              Create
-            </Button>
-          </form>
-        </Form>
       </DialogContent>
     </Dialog>
   );

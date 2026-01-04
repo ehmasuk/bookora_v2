@@ -26,7 +26,7 @@ export default function LanguageChanger() {
     <div className="*:not-first:mt-2">
       {mounted && (
         <Select defaultValue={language} onValueChange={handleChangeLanguage}>
-          <SelectTrigger id={id} className="cursor-pointer h-[36px] dark:bg-transparent">
+          <SelectTrigger id={id} className="cursor-pointer h-9 dark:bg-transparent">
             <Globe size={16} />
           </SelectTrigger>
           <SelectContent>

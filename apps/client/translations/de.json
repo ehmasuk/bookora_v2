@@ -120,7 +120,7 @@
     "header": {
       "title": "Meine Bücher",
       "description": "Verwalte deine persönliche Büchersammlung",
-      "create_button": "Neues Buch erstellen"
+      "create_button": "Buch"
     },
     "empty_message": "Du hast noch kein Buch erstellt"
   },
@@ -131,7 +131,6 @@
     "words": "Wörter",
     "chapters": "Kapitel",
     "brand": "Ein Produkt von",
-    "saving": "Speichern",
     "entry-title": "Bereit, deine Geschichte zu schreiben?",
     "entry-description": "Erstelle ein neues Kapitel, um deine Reise zu beginnen, oder wähle einen bestehenden Abschnitt, um dein Meisterwerk weiter zu bearbeiten."
   }
