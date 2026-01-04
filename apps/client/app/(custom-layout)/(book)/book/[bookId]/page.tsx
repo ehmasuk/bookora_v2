@@ -95,8 +95,8 @@ function BookTiptapEditor() {
   if (isLoading)
     return (
       <div>
-        <Skeleton className="w-full my-5 h-[30px]" />
-        <Skeleton className="h-[400px] mt-5 w-full" />
+        <Skeleton className="w-full my-5 h-7.5" />
+        <Skeleton className="h-100 mt-5 w-full" />
       </div>
     );
 

@@ -21,7 +21,6 @@ import { Separator } from "@workspace/ui/components/separator";
 
 import { IconPencilStar, IconWand } from "@tabler/icons-react";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@workspace/ui/components/input-group";
-import Link from "next/link";
 import { CommingSoon } from "../global/CommingSoon";
 
 interface Props {
