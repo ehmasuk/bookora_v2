@@ -39,9 +39,6 @@ importers:
       '@langchain/core':
         specifier: ^1.1.9
         version: 1.1.9
-      '@langchain/google-genai':
-        specifier: ^2.1.4
-        version: 2.1.4(@langchain/core@1.1.9)
       '@langchain/groq':
         specifier: ^1.0.2
         version: 1.0.2(@langchain/core@1.1.9)
@@ -771,10 +768,6 @@ packages:
   '@formatjs/intl-localematcher@0.6.2':
     resolution: {integrity: sha512-XOMO2Hupl0wdd172Y06h6kLpBz6Dv+J4okPLl4LPtzbr8f66WbIoy4ev98EBuZ6ZK4h5ydTN6XneT4QVpD7cdA==}
 
-  '@google/generative-ai@0.24.1':
-    resolution: {integrity: sha512-MqO+MLfM6kjxcKoy0p1wRzG3b4ZZXtPI+z2IE26UogS2Cm/XHO+7gGRBh6gcJsOiIVoH93UwKvW4HdgiOZCy9Q==}
-    engines: {node: '>=18.0.0'}
-
   '@hookform/resolvers@5.2.2':
     resolution: {integrity: sha512-A/IxlMLShx3KjV/HeTcTfaMxdwy690+L/ZADoeaTltLx+CVuzkeVIPuybK3jrRfw7YZnmdKsVVHAlEPIAEUNlA==}
     peerDependencies:
@@ -955,12 +948,6 @@ packages:
   '@langchain/core@1.1.9':
     resolution: {integrity: sha512-LDz7MjrZRAK4pxsh5bc0ZiBRdDUawKfw+dYdMRdQmJSKoeXFWPgzZqx5JQCyJ0AqIsZS6q1amZuiSLU9MoPqaQ==}
     engines: {node: '>=20'}
-
-  '@langchain/google-genai@2.1.4':
-    resolution: {integrity: sha512-kiizkpAibOj5SQDuxvGsIglTIO8xoWpQtv7XAapSrdPjigpDYMlHHQBj5aPVcFuV0/uCt5QKTgyCmaPmqQ8Olg==}
-    engines: {node: '>=20'}
-    peerDependencies:
-      '@langchain/core': 1.1.9
 
   '@langchain/groq@1.0.2':
     resolution: {integrity: sha512-buD2oSPFv8QpJpkoTS+xkBLNUeOrplmPFdiipt/qmYvaL/YOz0/tnMzTARCyeq2+jJvxV609cbuyW5aGvRQ3Rg==}
@@ -5415,10 +5402,6 @@ packages:
     resolution: {integrity: sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==}
     hasBin: true
 
-  uuid@11.1.0:
-    resolution: {integrity: sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A==}
-    hasBin: true
-
   uuid@9.0.1:
     resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
     hasBin: true
@@ -5764,8 +5747,6 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@google/generative-ai@0.24.1': {}
-
   '@hookform/resolvers@5.2.2(react-hook-form@7.69.0(react@19.2.3))':
     dependencies:
       '@standard-schema/utils': 0.3.0
@@ -5920,12 +5901,6 @@ snapshots:
       - '@opentelemetry/exporter-trace-otlp-proto'
       - '@opentelemetry/sdk-trace-base'
       - openai
-
-  '@langchain/google-genai@2.1.4(@langchain/core@1.1.9)':
-    dependencies:
-      '@google/generative-ai': 0.24.1
-      '@langchain/core': 1.1.9
-      uuid: 11.1.0
 
   '@langchain/groq@1.0.2(@langchain/core@1.1.9)':
     dependencies:
@@ -10765,8 +10740,6 @@ snapshots:
   utils-merge@1.0.1: {}
 
   uuid@10.0.0: {}
-
-  uuid@11.1.0: {}
 
   uuid@9.0.1: {}
 
