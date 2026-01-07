@@ -1,224 +1,28 @@
 "use client";
 
-import { z } from "zod";
+import Step1 from "@/components/generate-book/step-1";
+import Step2 from "@/components/generate-book/step-2";
+import Step3 from "@/components/generate-book/step-3";
+import { useState } from "react";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "@workspace/ui/components/button";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@workspace/ui/components/form";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@workspace/ui/components/select";
-import { Textarea } from "@workspace/ui/components/textarea";
-import { useForm } from "react-hook-form";
+export default function Page() {
+  const [step, setStep] = useState<1 | 2 | 3>(1);
 
-const categoryOptions = [
-  { value: "fiction", label: "Fiction" },
-  { value: "non-fiction", label: "Non-Fiction" },
-  { value: "educational", label: "Educational" },
-  { value: "self-help", label: "Self-Help" },
-  { value: "mystery", label: "Mystery" },
-];
-
-const genreOptions = [
-  { value: "sci-fi", label: "Science Fiction" },
-  { value: "fantasy", label: "Fantasy" },
-  { value: "romance", label: "Romance" },
-  { value: "thriller", label: "Thriller" },
-  { value: "biography", label: "Biography" },
-  { value: "self-help", label: "Self-Help" },
-];
-
-const targetAudienceOptions = [
-  { value: "children", label: "Children" },
-  { value: "teens", label: "Teens" },
-  { value: "adults", label: "Adults" },
-  { value: "professionals", label: "Professionals" },
-  { value: "general", label: "General Audience" },
-];
-
-const toneOptions = [
-  { value: "formal", label: "Formal" },
-  { value: "casual", label: "Casual" },
-  { value: "humorous", label: "Humorous" },
-  { value: "serious", label: "Serious" },
-  { value: "inspirational", label: "Inspirational" },
-];
-
-function page() {
   return (
-    <div className="max-w-2xl mx-auto px-4 py-20">
-      <InitialForm />
+    <div className="max-w-2xl mx-auto px-6 py-10">
+      {/* Step indicator */}
+      <div className="flex justify-between gap-4 text-sm font-medium mb-5">
+        <div className={`flex-1 text-center py-2 rounded-md ${step === 1 ? "bg-primary text-white" : "bg-muted"}`}>Info</div>
+        <div className={`flex-1 text-center py-2 rounded-md ${step === 2 ? "bg-primary text-white" : "bg-muted"}`}>Chapters</div>
+        <div className={`flex-1 text-center py-2 rounded-md ${step === 3 ? "bg-primary text-white" : "bg-muted"}`}>Sections</div>
+      </div>
+
+      {/* Step content */}
+      <div className="border rounded-lg p-6">
+        {step === 1 && <Step1 setStep={setStep} />}
+        {step === 2 && <Step2 setStep={setStep} />}
+        {step === 3 && <Step3 setStep={setStep} />}
+      </div>
     </div>
   );
 }
-
-const InitialForm = () => {
-  const formSchema = z.object({
-    prompt: z.string().min(10, { message: "prompt is required" }),
-    category: z.string().min(1, { message: "category is required" }),
-    genre: z.string().min(1, { message: "genre is required" }),
-    targetAudience: z.string().min(1, { message: "targetAudience is required" }),
-    tone: z.string().min(1, { message: "tone is required" }),
-  });
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      prompt: "",
-      category: "",
-      genre: "",
-      targetAudience: "",
-      tone: "",
-    },
-  });
-
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-  }
-
-  return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <FormField
-          control={form.control}
-          name="prompt"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                <p className="font-medium text-lg">Prompt</p>
-              </FormLabel>
-              <FormDescription>This is your public display name.</FormDescription>
-              <FormControl>
-                <Textarea placeholder="Type your message here." {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <div className="grid sm:grid-cols-2 sm:gap-4">
-          <FormField
-            control={form.control}
-            name="category"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>
-                  <p className="font-medium text-lg">Category</p>
-                </FormLabel>
-                <FormControl>
-                  <Select name={field.name} value={field.value} onValueChange={field.onChange}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select" className="w-full" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        <SelectLabel>Category</SelectLabel>
-                        {categoryOptions.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label}
-                          </SelectItem>
-                        ))}
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="genre"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>
-                  <p className="font-medium text-lg">Genre</p>
-                </FormLabel>
-                <FormControl>
-                  <Select name={field.name} value={field.value} onValueChange={field.onChange}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select" className="w-full" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        <SelectLabel>Genere</SelectLabel>
-                        {genreOptions.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label}
-                          </SelectItem>
-                        ))}
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="targetAudience"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>
-                  <p className="font-medium text-lg">Target Audience</p>
-                </FormLabel>
-                <FormControl>
-                  <Select name={field.name} value={field.value} onValueChange={field.onChange}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select" className="w-full" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        <SelectLabel>Target Audience</SelectLabel>
-                        {targetAudienceOptions.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label}
-                          </SelectItem>
-                        ))}
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="tone"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>
-                  <p className="font-medium text-lg">Tone</p>
-                </FormLabel>
-                <FormControl>
-                  <Select name={field.name} value={field.value} onValueChange={field.onChange}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select" className="w-full" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        <SelectLabel>Tone</SelectLabel>
-                        {toneOptions.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label}
-                          </SelectItem>
-                        ))}
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-
-        <div className="flex justify-end">
-          <Button type="submit">Generate Chapters</Button>
-        </div>
-      </form>
-    </Form>
-  );
-};
-
-export default page;

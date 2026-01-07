@@ -56,7 +56,7 @@ export default function BookManagementDashboard() {
             <p className="text-muted-foreground">{t("header.description")}</p>
           </div>
 
-          <CreateBookModal tooltip={false}>
+          <CreateBookModal>
             <Button variant="black">
               {t("header.create_button")} <Plus />
             </Button>

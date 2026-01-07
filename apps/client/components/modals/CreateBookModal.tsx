@@ -21,11 +21,10 @@ import { Separator } from "@workspace/ui/components/separator";
 
 import { IconPencilStar, IconWand } from "@tabler/icons-react";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@workspace/ui/components/input-group";
-import { CommingSoon } from "../global/CommingSoon";
+import Link from "next/link";
 
 interface Props {
   children: React.ReactNode;
-  tooltip?: boolean;
 }
 
 interface NewBookResponse {
@@ -149,18 +148,12 @@ function CreateBookModal({ children }: Props) {
               </div>
             </div>
             <div className="flex items-center justify-end border-t p-5">
-              <CommingSoon>
+              <Link href="/generate-book">
                 <Button type="submit" variant="black" className="h-8">
                   <SparklesIcon />
                   Generate
                 </Button>
-              </CommingSoon>
-              {/* <Link href="/generate-book">
-                <Button type="submit" variant="black" className="h-8">
-                  <SparklesIcon />
-                  Generate
-                </Button>
-              </Link> */}
+              </Link>
             </div>
           </div>
         </div>
