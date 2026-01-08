@@ -240,10 +240,8 @@ const exportBook = async (req: CustomRequest, res: Response, next: NextFunction)
       `attachment; filename="${book.title}.docx"`
     );
 
-    successResponse({
-      res,
-      data: buffer,
-    });
+
+    return res.end(buffer);
 
 
 

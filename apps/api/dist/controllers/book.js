@@ -199,10 +199,7 @@ const exportBook = async (req, res, next) => {
         const buffer = await htmlToDocx(bookHtml);
         res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
         res.setHeader("Content-Disposition", `attachment; filename="${book.title}.docx"`);
-        successResponse({
-            res,
-            data: buffer,
-        });
+        return res.end(buffer);
     }
     catch (error) {
         next(error);
