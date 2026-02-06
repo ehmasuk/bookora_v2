@@ -21,4 +21,5 @@ connectDb()
   })
   .catch((err: Error) => {
     console.error("Error connecting database: ", err.message);
+    process.exit(1);
   });
